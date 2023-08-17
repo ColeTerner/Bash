@@ -1,0 +1,5 @@
+echo "your camera is on rtsp://admin:admin@116.202.45.120:9998/live/main"
+echo "push the button to connect"
+read button
+ssh -p $1 -L 0.0.0.0:9998:$3:554 $2
+

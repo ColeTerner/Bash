@@ -1,0 +1,15 @@
+#!/bin/bash
+pass=$1
+
+for i in $(cat list);do sshpass -p $pass ssh-copy-id -oStrictHostKeyChecking=no detect@$i &
+done
+wait
+
+
+for i in $(cat list);do echo $pass|ssh  -o ConnectTimeout=1 -tt detect@$i '
+echo "detect:detect-pwd" | sudo chpasswd
+'&
+done
+wait
+
+
